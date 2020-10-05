@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package downlink_proto;
+
+/*
+TODO fields that still need assigned
+analogIoData->A0V
+analogIoData->A1V
+analogIoData->A2V
+analogIoData->A3V
+
+digitalIoData->D0
+digitalIoData->D1
+digitalIoData->D2
+digitalIoData->D3
+*/
+
+// TODO consider representing with unix time
+message Timestamp {
+    int32 month = 1;
+    int32 day = 2;
+    int32 year = 3;
+
+    int32 hour = 4;
+    int32 minute = 5;
+    int32 second = 6;
+}
+
+message PowerSupplyMetrics {
+    float temperature_v0 = 1;
+    float temperature_v1 = 2;
+
+    float level_3v3 = 3;
+    float level_5v0 = 4;
+}
+
+// TODO - can we represent IMU pose in a more data-efficient manner?
+message IMUMetrics {
+    float euler_x = 1;
+    float euler_y = 2;
+    float euler_z = 3;
+
+    float quat_a = 4;
+    float quat_b = 5;
+    float quat_c = 6;
+
+    float omega_x = 7;
+    float omega_y = 8;
+    float omega_z = 9;
+
+    float magnitude_x = 10;
+    float magnitude_y = 11;
+    float magnitude_z = 12;
+
+    float temperature = 13;
+}
+
+message SpaceComputerMetrics {
+    float power_voltage = 1;
+    float power_current = 2;
+
+    float temperature_die = 3;
+}
+
+message SystemMetrics {
+    required Timestamp time = 1;
+    required bool delayed = 2;
+
+    PowerSupplyMetrics power_supply = 3;
+    SpaceComputerMetrics computer = 4;
+    IMUMetrics imu = 5;
+
+}
+
+// Message encapsulation to incorporate checksum
+// May replace with hardcoded final message format
+message DownlinkMessage {
+    required int64 checksum = 1;
+    required SystemMetrics metrics = 2;
+}
