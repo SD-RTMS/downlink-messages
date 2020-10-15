@@ -2,18 +2,20 @@ syntax = "proto3";
 
 package downlink_proto;
 
-/*
-TODO fields that still need assigned
-analogIoData->A0V
-analogIoData->A1V
-analogIoData->A2V
-analogIoData->A3V
+message digitalMetrics {
+    bool digital_0 = 1;
+    bool digital_1 = 2;
+    bool digital_2 = 3;
+    bool digital_3 = 4;
+    bool digital_4 = 5;
+}
 
-digitalIoData->D0
-digitalIoData->D1
-digitalIoData->D2
-digitalIoData->D3
-*/
+message analogMetrics {
+    float analog_0 = 1;
+    float analog_1 = 2;
+    float analog_2 = 3;
+    float analog_3 = 4;
+}
 
 // TODO consider representing with unix time
 message Timestamp {
@@ -63,8 +65,8 @@ message SpaceComputerMetrics {
 }
 
 message SystemMetrics {
-    required Timestamp time = 1;
-    required bool delayed = 2;
+    Timestamp time = 1;
+    bool delayed = 2;
 
     PowerSupplyMetrics power_supply = 3;
     SpaceComputerMetrics computer = 4;
@@ -75,6 +77,6 @@ message SystemMetrics {
 // Message encapsulation to incorporate checksum
 // May replace with hardcoded final message format
 message DownlinkMessage {
-    required int64 checksum = 1;
-    required SystemMetrics metrics = 2;
+    int64 checksum = 1;
+    SystemMetrics metrics = 2;
 }
