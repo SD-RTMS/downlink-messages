@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package downlink_proto;
 
-message digitalMetrics {
+message DigitalMetrics {
     bool digital_0 = 1;
     bool digital_1 = 2;
     bool digital_2 = 3;
@@ -10,7 +10,7 @@ message digitalMetrics {
     bool digital_4 = 5;
 }
 
-message analogMetrics {
+message AnalogMetrics {
     float analog_0 = 1;
     float analog_1 = 2;
     float analog_2 = 3;
@@ -71,12 +71,6 @@ message SystemMetrics {
     PowerSupplyMetrics power_supply = 3;
     SpaceComputerMetrics computer = 4;
     IMUMetrics imu = 5;
-
-}
-
-// Message encapsulation to incorporate checksum
-// May replace with hardcoded final message format
-message DownlinkMessage {
-    int64 checksum = 1;
-    SystemMetrics metrics = 2;
+    DigitalMetrics digital = 6;
+    AnalogMetrics analog = 7;
 }
