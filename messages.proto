@@ -52,8 +52,8 @@ message IMUMetrics {
     float omega_z = 10;
 
     float linearAccel_x = 11;
-    float linearAccel_x = 12;
-    float linearAccel_x = 13;
+    float linearAccel_y = 12;
+    float linearAccel_z = 13;
 
     float magnitude_x = 14;
     float magnitude_y = 15;
