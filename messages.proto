@@ -45,16 +45,21 @@ message IMUMetrics {
     float quat_a = 4;
     float quat_b = 5;
     float quat_c = 6;
+    float quat_d = 7;
 
-    float omega_x = 7;
-    float omega_y = 8;
-    float omega_z = 9;
+    float omega_x = 8;
+    float omega_y = 9;
+    float omega_z = 10;
 
-    float magnitude_x = 10;
-    float magnitude_y = 11;
-    float magnitude_z = 12;
+    float linearAccel_x = 11;
+    float linearAccel_x = 12;
+    float linearAccel_x = 13;
 
-    float temperature = 13;
+    float magnitude_x = 14;
+    float magnitude_y = 15;
+    float magnitude_z = 16;
+
+    float temperature = 17;
 }
 
 message SpaceComputerMetrics {
